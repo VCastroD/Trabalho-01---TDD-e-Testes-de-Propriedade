@@ -1,0 +1,91 @@
+.FFF                                                                     [100%]
+================================== FAILURES ===================================
+_______________________ test_propriedade_faixa_unitaria _______________________
+
+    @settings(max_examples=500)
+>   @given(lote_valido)
+                   ^^^
+
+evidencias\propriedades_vs_bugada.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidencias\propriedades_vs_bugada.py:15: in test_propriedade_faixa_unitaria
+    saida = normalizar_lote(lote)
+            ^^^^^^^^^^^^^^^^^^^^^
+normalizacao_bugada.py:30: in normalizar_lote_bugado
+    return [_grampear((v - menor) / maior) for v in numeros]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+.0 = <list_iterator object at 0x0000017700BA5D20>
+
+>   return [_grampear((v - menor) / maior) for v in numeros]
+                      ^^^^^^^^^^^^^^^^^^^
+E   ZeroDivisionError: float division by zero
+E   Failing test case: test_propriedade_faixa_unitaria(
+E       lote=[0.0, -1.0],
+E   )
+
+normalizacao_bugada.py:30: ZeroDivisionError
+____________________ test_propriedade_ancoras_nos_extremos ____________________
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Python\Downloads\ATV1\evidencias\propriedades_vs_bugada.py", line 22, in test_propriedade_ancoras_nos_extremos
+  |     @given(lote_valido)
+  |                    ^^^
+  |   File "C:\Users\Python\AppData\Local\Programs\Python\Python311\Lib\site-packages\hypothesis\core.py", line 2288, in wrapped_test
+  |     raise the_error_hypothesis_found
+  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Python\Downloads\ATV1\evidencias\propriedades_vs_bugada.py", line 28, in test_propriedade_ancoras_nos_extremos
+    |     assert max(saida) == 1.0
+    | AssertionError: assert 0.0 == 1.0
+    |  +  where 0.0 = max([0.0, -0.0])
+    | Failing test case: test_propriedade_ancoras_nos_extremos(
+    |     lote=[-1.0, -2.0],
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Python\Downloads\ATV1\evidencias\propriedades_vs_bugada.py", line 26, in test_propriedade_ancoras_nos_extremos
+    |     saida = normalizar_lote(lote)
+    |             ^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Python\Downloads\ATV1\normalizacao_bugada.py", line 30, in normalizar_lote_bugado
+    |     return [_grampear((v - menor) / maior) for v in numeros]
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Python\Downloads\ATV1\normalizacao_bugada.py", line 30, in <listcomp>
+    |     return [_grampear((v - menor) / maior) for v in numeros]
+    |                       ~~~~~~~~~~~~^~~~~~~
+    | ZeroDivisionError: float division by zero
+    | Failing test case: test_propriedade_ancoras_nos_extremos(
+    |     lote=[0.0, -1.0],
+    | )
+    +------------------------------------
+________________________ test_propriedade_idempotencia ________________________
+
+    @settings(max_examples=500)
+>   @given(lote_valido)
+                   ^^^
+
+evidencias\propriedades_vs_bugada.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+lote = [1.0, 2.0]
+
+    @settings(max_examples=500)
+    @given(lote_valido)
+    def test_propriedade_idempotencia(lote):
+        uma_vez = normalizar_lote(lote)
+>       assert normalizar_lote(uma_vez) == uma_vez
+E       assert [0.0, 1.0] == [0.0, 0.5]
+E         
+E         At index 1 diff: 1.0 != 0.5
+E         Use -v to get more diff
+E       Failing test case: test_propriedade_idempotencia(
+E           lote=[1.0, 2.0],
+E       )
+
+evidencias\propriedades_vs_bugada.py:35: AssertionError
+=========================== short test summary info ===========================
+FAILED evidencias/propriedades_vs_bugada.py::test_propriedade_faixa_unitaria
+FAILED evidencias/propriedades_vs_bugada.py::test_propriedade_ancoras_nos_extremos
+FAILED evidencias/propriedades_vs_bugada.py::test_propriedade_idempotencia - ...
+3 failed, 1 passed in 0.31s

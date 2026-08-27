@@ -1,0 +1,30 @@
+================================== FAILURES ===================================
+_____________________ test_saida_dentro_da_faixa_unitaria _____________________
+
+    @given(st.lists(finitos, min_size=1))
+>   def test_saida_dentro_da_faixa_unitaria(lote):
+                   ^^^
+
+.fases\prop_probe.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.fases\prop_probe.py:9: in test_saida_dentro_da_faixa_unitaria
+    for y in normalizar_lote(lote):
+             ^^^^^^^^^^^^^^^^^^^^^
+normalizacao.py:4: in normalizar_lote
+    return [(v - menor) / (maior - menor) for v in valores]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+.0 = <list_iterator object at 0x000001FD91E24C40>
+
+>   return [(v - menor) / (maior - menor) for v in valores]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   ZeroDivisionError: float division by zero
+E   Failing test case: test_saida_dentro_da_faixa_unitaria(
+E       lote=[0.0],
+E   )
+
+normalizacao.py:4: ZeroDivisionError
+=========================== short test summary info ===========================
+FAILED .fases/prop_probe.py::test_saida_dentro_da_faixa_unitaria - ZeroDivisi...
+1 failed in 0.30s

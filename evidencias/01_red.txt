@@ -1,0 +1,15 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+___________________ test_normaliza_lote_para_faixa_unitaria ___________________
+
+    def test_normaliza_lote_para_faixa_unitaria():
+>       assert normalizar_lote([2.0, 4.0, 6.0]) == [0.0, 0.5, 1.0]
+E       assert [] == [0.0, 0.5, 1.0]
+E         
+E         Right contains 3 more items, first extra item: 0.0
+E         Use -v to get more diff
+
+test_normalizacao.py:5: AssertionError
+=========================== short test summary info ===========================
+FAILED test_normalizacao.py::test_normaliza_lote_para_faixa_unitaria - assert...
+1 failed in 0.62s
